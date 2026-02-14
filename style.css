@@ -1,0 +1,107 @@
+:root {
+    --bg: radial-gradient(circle at top, #1a1a2e, #16213e, #0f0c29);
+    --glass: rgba(255, 255, 255, 0.08);
+    --text: #ffffff;
+    --accent: #00d2ff;
+    --card-border: rgba(255, 255, 255, 0.12);
+}
+
+.light-mode {
+    --bg: radial-gradient(circle at top, #f0f2f5, #e0e4e8, #d1d9e0);
+    --glass: rgba(0, 0, 0, 0.05);
+    --text: #1a1a2e;
+    --accent: #007bff;
+    --card-border: rgba(0, 0, 0, 0.1);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+        
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text); height: 100vh; width: 100vw; overflow: hidden;
+    transition: background 0.3s ease;
+}
+
+/* --- SPLASH SCREEN --- */
+#splashScreen { 
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+    background: #0f0c29; display: flex; flex-direction: column; 
+    align-items: center; justify-content: center; z-index: 9999; 
+    transition: opacity 0.8s ease; 
+}
+.splash-icon-box { animation: iconPop 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); color: var(--accent); }
+@keyframes iconPop { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+.splash-footer { position: absolute; bottom: 50px; font-size: 12px; letter-spacing: 3px; opacity: 0.7; color: white; text-transform: uppercase; }
+
+/* --- CONTROLS --- */
+.burger-btn { position: fixed; top: 25px; left: 25px; z-index: 1100; display: none; }
+.theme-btn { position: fixed; top: 25px; right: 25px; z-index: 1001; display: none; }
+.home-active .burger-btn, .home-active .theme-btn { display: flex; }
+.control-btn { background: var(--glass); backdrop-filter: blur(10px); padding: 10px; border-radius: 12px; border: 1px solid var(--card-border); color: var(--text); cursor: pointer; transition: 0.3s; display: flex; align-items: center; }
+.burger-btn.active .control-btn { background: var(--accent); color: #000; border-color: var(--accent); }
+
+/* --- HEADER & DIVIDER --- */
+.header-section { margin-top: 65px; text-align: center; }
+.header { font-size: 28px; font-weight: 800; margin-bottom: 15px; background: linear-gradient(to right, #00d2ff, #3a7bd5, #00d2ff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 4s linear infinite; }
+.divider { width: 85%; height: 1px; background: linear-gradient(90deg, transparent, var(--card-border), transparent); margin: 0 auto 20px auto; }
+@keyframes gradientMove { to { background-position: 200% center; } }
+
+/* --- SIDEBAR --- */
+.sidebar { position: fixed; top: 0; left: -280px; width: 260px; height: 100%; background: var(--glass); backdrop-filter: blur(25px); border-right: 1px solid var(--card-border); z-index: 1000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; padding: 90px 20px 20px 20px; }
+.sidebar.active { left: 0; }
+.sidebar-item { padding: 15px; margin-bottom: 8px; border-radius: 12px; display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.05); cursor: pointer; font-weight: 600; }
+.sidebar-footer { margin-top: auto; text-align: center; padding: 20px; border-top: 1px solid var(--card-border); }
+.social-icons { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
+
+/* --- SCREENS --- */
+.screen { display: none; height: 100vh; width: 100vw; padding: 25px; position: absolute; top: 0; left: 0; }
+.active-screen { display: flex; flex-direction: column; animation: pageFade 0.6s ease; }
+@keyframes pageFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- NOTE CARD (UPDATED META) --- */
+.note-card { background: var(--glass); padding: 20px; border-radius: 20px; border: 1px solid var(--card-border); margin-bottom: 12px; position: relative; }
+.note-card h3 { font-size: 18px; margin-bottom: 12px; font-weight: 700; }
+.card-meta { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; opacity: 0.6; color: var(--accent); }
+
+#contextMenu { position: fixed; display: none; background: rgba(20, 20, 35, 0.95); backdrop-filter: blur(15px); border: 1px solid var(--card-border); border-radius: 15px; width: 180px; z-index: 2000; }
+.menu-item { padding: 15px; display: flex; align-items: center; gap: 12px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+/* --- SETTINGS --- */
+.settings-group { margin-top: 20px; }
+.setting-item { background: var(--glass); padding: 18px; border-radius: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--card-border); }
+.toggle-btn { width: 45px; height: 22px; background: rgba(128,128,128,0.3); border-radius: 15px; position: relative; cursor: pointer; }
+.toggle-btn.on { background: var(--accent); }
+.toggle-circle { width: 18px; height: 18px; background: white; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: 0.3s; }
+.toggle-btn.on .toggle-circle { left: 25px; }
+
+/* --- EDITOR (NEW MODERN STYLE) --- */
+.editor-header { display: flex; align-items: center; gap: 15px; margin-top: 50px; margin-bottom: 5px; }
+#dateDisplay { font-size: 12px; color: var(--accent); font-weight: 800; opacity: 0.8; letter-spacing: 1px; }
+#titleInput { background: transparent; border: none; color: var(--text); font-size: 26px; font-weight: 800; outline: none; width: 100%; margin-top: 5px; }
+#contentInput {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 700;          /* ← yeh bold/heavy karega */
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;  /* clean & heavy feel */
+    flex: 1;
+    resize: none;
+    outline: none;
+    margin-top: 15px;
+    line-height: 1.6;
+    padding: 0 10px;           /* thoda breathing space */
+}
+
+/* Placeholder ko bhi thoda standout banane ke liye */
+#contentInput::placeholder {
+    color: var(--accent);
+    opacity: 0.7;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.font-trigger { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; background: var(--accent); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: #000; z-index: 101; }
+.font-control-wrapper { position: fixed; bottom: 30px; left: 30px; height: 50px; background: var(--glass); backdrop-filter: blur(20px); border-radius: 15px; display: flex; align-items: center; gap: 12px; padding: 0 15px 0 60px; width: 0; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 100; }
+.font-control-wrapper.open { width: 240px; opacity: 1; pointer-events: auto; }
