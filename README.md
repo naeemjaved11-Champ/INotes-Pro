@@ -2,7 +2,7 @@
 **A professional Note-taking Application for Android & Web.**
 
 ## 🚀 Live Demo
-[👉 Click here to open INotes Pro](Aapki_GitHub_Pages_Link_Yahan_Dalein)
+[👉 Click here to open INotes Pro](https://naeemjaved11-champ.github.io/INotes-Pro/)
 
 ## ✨ Features
 - **Dark Mode UI:** Sleek and professional design.
