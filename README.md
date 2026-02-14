@@ -15,5 +15,4 @@
 - **Framework:** Cordova/Ionic (for Mobile)
 - **Deployment:** GitHub Pages
 
-## 📸 Screenshots
-*(Aap apni app ki ek-do photo yahan add kar sakte hain)*
+
